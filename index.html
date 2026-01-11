@@ -1,0 +1,17 @@
+
+<input type="file" id="photoInput" accept="image/*" />
+<button onclick="uploadPhoto()">Upload</button>
+
+<script>
+  async function uploadPhoto() {
+    const file = document.getElementById("photoInput").files[0];
+    const formData = new FormData();
+    formData.append("photo", file);
+
+    const response = await fetch("http://localhost:8080/upload", {
+      method: "POST",
+      body: formData,
+    });
+    console.log(await response.text());
+  }
+</script>
